@@ -3,7 +3,7 @@ Encoding=UTF-8
 Version=1.1.1
 Type=Application
 Terminal=false
-Exec=/usr/bin/python3 /usr/bin/aurapad
-Name=AuraPad
+Exec=/usr/bin/python3 /usr/bin/EterZenith Scribbles
+Name=EterZenith Scribbles
 Icon=/opt/apicn.png
 

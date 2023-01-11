@@ -5,7 +5,7 @@ import pathlib as path
 from tkinter import Tk as tk
 from tkinter import filedialog
 import tkinter.messagebox
-import webview as webengine
+
 
 # Application Metadata (don't remove)
 global application_version
@@ -15,7 +15,7 @@ application_version = "v1.1.1"
 file_name = "none"
 root = Tk()
 root.configure(background='#0D1117')
-root.title("AuraPad")
+root.title("EterZenith Scribbles")
 root.geometry("800x600")
 hardcoded_font = ("monospace", 12)
 
@@ -29,9 +29,8 @@ def saveas_file(arg):
     global file_name
     file_name = filedialog.asksaveasfilename(defaultextension=".txt")
     filnm = file_name
-    file = open(file_name, "w")
-    file.write(text_editor.get(1.0, END))
-    file.close()
+    with open(file_name, "w") as file:
+        file.write(text_editor.get(1.0, END))
     print(file_name)
 
 def preview_file(arg):
@@ -48,20 +47,24 @@ def open_file(arg):
     global file_name
     file_name = filedialog.askopenfilename(defaultextension=".txt")
     print(file_name)
-    file = open(file_name, "r")
-    text_editor.delete(1.0, END)
-    text_editor.insert(1.0, file.read())
-    file.close()
+    with open(file_name, "r") as file:
+        text_editor.delete(1.0, END)
+        text_editor.insert(1.0, file.read())
 
 def clear_text(arg):
     text_editor.delete(1.0, END)
 
 def save_file(arg):
-    file = open(file_name, "w")
-    file.write(text_editor.get(1.0, END))
-    file.close()
+    with open(file_name, "w") as file:
+        file.write(text_editor.get(1.0, END))
 
-about_button = Button(root, text="About", command=lambda: tkinter.messagebox.showinfo("About AuraPad",  "Version " + application_version))
+about_button = Button(
+    root,
+    text="About",
+    command=lambda: tkinter.messagebox.showinfo(
+        "About EterZenith Scribbles", f"Version {application_version}"
+    ),
+)
 save_button = Button(root, text="Save", command=lambda: save_file(text_editor))
 sel_font = Button(root, text="Change Font", command=lambda: change_font_dialog())
 saveas_button = Button(root, text="Save As", command=lambda: saveas_file(text_editor))

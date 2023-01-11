@@ -3,7 +3,7 @@
 
 if ! which python3
 then
-	echo "Python3 is not installed, AuraPad won't run!"
+	echo "Python3 is not installed, EterZenith Scribbles won't run!"
 	exit 1
 fi
 
